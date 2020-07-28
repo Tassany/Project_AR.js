@@ -12,11 +12,18 @@
         <a-scene  embedded arjs>
             <!--Câmera-->
           <a-entity camera> </a-entity>  
+
+          <!--Hiro marker-->
+          <a-marker preset='hiro'>
+            <a-box position='0 0.5 0' material='color: green;'></a-box>
+          </a-marker>
+          <!--Own image marker-->
           <a-marker type="pattern" preset="custom" url="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/markerD20/pattern-d20.patt">
                 <a-entity
                     position="0 -1 0"
-                    scale="10 10 10"
+                    scale="5 5 5"
                     gltf-model="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/CoffeeCup_LP_GLTF.gltf">
+                    
 
                 </a-entity>
           </a-marker>
