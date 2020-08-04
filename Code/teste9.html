@@ -5,18 +5,18 @@
 
     </head>
     <body>
-        <a-scene>
+        <a-scene embedded arjs>
           <a-marker preset='hiro'>
-            <a-box  position="0 2 -5" rotation="0 45 45" width= '0.5' color = "red">
+            <a-box  position="0 0 0" rotation="0 45 45" width= '0.5' color = "red">
       
                </a-box>
               </a-marker>
-               <a-camera>
-                    <a-cursor>
-                    </a-cursor>
+              <a-entity camera>
+                <a-cursor>
+                </a-cursor>
 
-               </a-camera>
-              
+              </a-entity>
+       
             
           </a-scene>
 
