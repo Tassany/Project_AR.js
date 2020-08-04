@@ -1,0 +1,46 @@
+<html>
+    <head>
+      <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+      <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+
+
+    </head>
+    <body>
+        <a-scene embedded arjs >
+       
+          
+          <a-marker preset='hiro'>
+            <a-entity id="pyra" obj-model="obj:https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/piramede.obj" material="color: green" rotation="0 180 0" position="0 0 0.5" scale="0.0005 0.0005 0.0005"></a-entity>
+         </a-marker>
+
+         <a-marker type="pattern" preset="custom" url="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/markerD20/pattern-d20.patt">
+            <a-box  position="0 0 0" rotation="0 45 45" width= '0.5' color = "red"></a-box>
+
+          </a-marker>
+            <a-entity camera>
+              <a-cursor>
+              </a-cursor>
+
+            </a-entity>
+       
+            
+          </a-scene>
+
+    </body>
+  </html>
+  
+  <script>
+          var boxEl = document.querySelector('a-box');
+    var pira = document.querySelector('#pyra');
+    pira.addEventListener('click', function () {
+      
+     
+
+      boxEl.setAttribute('color', 'blue');
+
+  
+      
+    });
+</script>
+
+  
