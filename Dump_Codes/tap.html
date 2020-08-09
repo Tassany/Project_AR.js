@@ -6,11 +6,12 @@
     </head>
     <body>
         <a-scene embedded arjs>
-          <a-marker preset='hiro'>
-            <a-box  position="0 0 0" rotation="0 45 45" width= '0.5' color = "red">
-      
-               </a-box>
-              </a-marker>
+          <a-marker id="d20" type="pattern" preset="custom" url="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/markerD20/pattern-d20.patt">
+            <a-box  position="0 0 0" rotation="0 0 0" width= '0.5' color = "red">
+            <a-text value="Hello, World!" position="0 1 0" rotation="0 0 0"  ></a-text>
+</a-box>
+<a-sphere color="yellow" radius="0.5"></a-sphere>
+          </a-marker>
               <a-entity camera>
                 <a-cursor>
                 </a-cursor>
@@ -25,19 +26,16 @@
   
 <script>
   var boxEl = document.querySelector('a-box');
+ 
+  var bola = document.querySelector("a-sphere"); 
   boxEl.addEventListener('click', function () {
-    
-   
-   if(boxEl.getAttribute('material').color == 'red'){
-    boxEl.setAttribute('color', 'blue');
-   }else{
-    boxEl.setAttribute('color', 'red');
-   }
+     bola.object3D.visible = false
 
-    
-  });
+  })
+ 
 
 
 </script>
+
 
 

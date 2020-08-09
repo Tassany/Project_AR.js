@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script>
+    window.onload = function() {
+      var speechBubble = document.querySelector(".speech-bubble");
+
+      var dino = document.querySelector("#dino");
+      var shouldHide = true;
+
+      dino.addEventListener("click", function() {
+        if (speechBubble.style.display === "none" || !speechBubble.style.display) {
+          speechBubble.innerHTML = "dialogue";
+          speechBubble.style.display = "block";
+        } else {
+          speechBubble.style.display = "none";
+        }
+      });
+    };
+  </script>
+  <style>
+    .speech-bubble {
+      content: "miau miau";
+      position: absolute;
+      width: 80%;
+      margin: 0 auto;
+      bottom: 50px;
+      right: 10px;
+      left: 10px;
+      min-height: 20%;
+      background: #004431;
+      color: #0f4;
+      font-size: 28px;
+      border-radius: 0.4em;
+      padding: 20px;
+      display: none;
+    }
+
+    .speech-bubble:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border: 50px solid transparent;
+      border-top-color: #004431;
+      border-bottom: 0;
+      border-left: 0;
+      margin-left: -50px;
+      margin-bottom: -50px;
+    }
+  </style>
+  <body style="margin : 0px; overflow: hidden;">
+    <div class="speech-bubble"></div>
+
+    <a-scene embedded arjs>
+      <a-marker preset="hiro">
+        <a-entity
+          id="dino"
+          position="0 0 0"
+          scale="0.05 0.05 0.05"
+          gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+        ></a-entity>
+      </a-marker>
+      <a-entity camera> <a-cursor> </a-cursor></a-entity>
+    </a-scene>
+  </body>
+</html>

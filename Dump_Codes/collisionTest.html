@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A-Frame Ball Throw</title>
+    <meta name="description" content="A-Frame Ball Throw" />
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body>
+      <script>
+  AFRAME.registerComponent('foo', {
+    init: function() {
+      this.el.addEventListener('hit', (e) => {
+        this.el.setAttribute('color', 'blue');
+
+      })
+      this.el.addEventListener('hitend', (e) => {
+        this.el.setAttribute('color', 'red');
+      })
+    }
+  })
+
+</script>
+<a-scene embedded arjs >
+       
+          
+    <a-marker preset='hiro'>
+        <a-sphere sphere-collider='' position="0 0.5 0" radius="1" color="#EF2D5E">
+    
+        </a-sphere>
+   </a-marker>
+
+   <a-marker type="pattern" preset="custom" url="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/markerD20/pattern-d20.patt">
+      <a-box  position="0 0 0" rotation="0 45 45" width= '3' color = "red" foo></a-box>
+
+    </a-marker>
+      <a-entity camera>
+      </a-entity>
+ 
+      
+    </a-scene>
+  </body>
+</html>
