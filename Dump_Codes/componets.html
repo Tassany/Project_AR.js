@@ -23,7 +23,7 @@
           material="opacity: 0.1"
           obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/catito.obj);
                     mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/catito.mtl)"
-            animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=0 270 90; to: 0 270 450; startEvents: emit">
+ animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=0 270 90; to: 0 270 450; startEvents: emit">
         </a-entity>
       </a-marker>
 
@@ -38,10 +38,7 @@
           rotation="0 270 90"
           obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/dog.obj);
                     mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/dog.mtl)"
-                    animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=0 270 90; to: 0 270 450; startEvents: emit"
-                    animation__color="property: components.material.material.color; type: color; dir: alternate; dur: 1000;
-                                easing: easeInSine; loop: true; to: #FFF ; startEvents: emit">>
-        
+        >
         </a-entity>
       </a-marker>
       <a-marker preset="kanji">
@@ -52,8 +49,7 @@
           scale="0.5 0.5 0.5"
           obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/monster.obj);
                     mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/monster.mtl)"
-                    animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=0 270 90; to: 0 270 450; startEvents: emit">
-        
+        >
         </a-entity>
       </a-marker>
     </a-scene>
@@ -62,21 +58,8 @@
 
 <script>
   var cat = document.querySelector("#cat");
-var dog = document.querySelector("#dog");
-var monster = document.querySelector("#monster");
 
   cat.addEventListener("click", function() {
     cat.emit("emit");
   });
-
-  
-
-dog.addEventListener("click", function() {
-  dog.emit("emit");
-});
-
-
-monster.addEventListener("click", function() {
-  monster.emit("emit");
-});
 </script>
