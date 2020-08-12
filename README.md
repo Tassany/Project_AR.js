@@ -11,3 +11,7 @@ https://aframe.io/blog/arjs/
 https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
 
 https://au.gmented.com/app/marker/marker.php
+
+https://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
+
+https://medium.com/@WomenWhoCode/building-an-augmented-reality-treasure-hunt-with-a-frame-and-ar-js-2737e10c4cbd
