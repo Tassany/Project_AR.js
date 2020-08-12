@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Choose And Love</title>
+
+    <!-- A-frame -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- A-frame animation -->
+    <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
+    <!--AR.js-->
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+  </head>
+
+  //CSS
+  <style>
+    .speech-bubble {
+      content: "miau miau";
+      position: absolute;
+      width: 80%;
+      margin: 0 auto;
+      bottom: 50px;
+      right: 10px;
+      left: 10px;
+      min-height: 20%;
+      background: #262626;
+      color: #ffffff;
+      font-size: 28px;
+      border-radius: 0.4em;
+      padding: 20px;
+      display: none;
+    }
+    .speech-bubble-test {
+      content: "miau miau";
+      position: absolute;
+      width: 80%;
+      margin: 0 auto;
+      bottom: 50px;
+      right: 10px;
+      left: 10px;
+      min-height: 20%;
+      background: #262626;
+      color: #ffffff;
+      font-size: 28px;
+      border-radius: 0.4em;
+      padding: 20px;
+      display: flex;
+    }
+  </style>
+  <body>
+    <div class="speech-bubble-test">
+        The animal will need food in  <span id="time">01:00</span>  seconds!
+       </div>
+         <div class="speech-bubble">
+    THE ANIMAL NEEDS FOOD
+       </div>
+    <a-scene embedded arjs>
+      <!-- Camera and cursor-->
+      <a-entity camera>
+        <a-cursor
+          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+          animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+          cursor="fuse: true;"
+          material="color: black; shader: flat"
+          position="0 0 -3"
+          geometry="primitive: ring"
+        >
+        </a-cursor
+      ></a-entity>
+
+      <!-- Hiro Marker -->
+      <a-marker preset="hiro">
+        <!-- Cat 3D model-->
+        <a-entity
+          id="cat"
+          position="-1 0 0"
+          rotation="0 270 90"
+          material="opacity: 0.1"
+          visible="false"
+          obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/catito.obj);
+                    mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/catito.mtl)"
+          animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=0 270 90; to: 0 270 450; startEvents:jump"
+        >
+        </a-entity>
+        <!-- Heart 3D model for the cat-->
+        <a-entity
+          id="heart"
+          position="0 0 -1"
+          rotation="90 270 90"
+          visible="false"
+          scale="0.25 0.25 0.25"
+          obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.obj);
+                  mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.mtl)"
+          animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=90 270 90; to: 450 270 90; startEvents: emit"
+          animation__pipo="property: visible; dur: 1; easing:  linear; to: false; startEvents: pipo "
+          animation__popo="property: visible; dur: 1; easing:  linear; to: true; startEvents: popo "
+        >
+        </a-entity>
+        <!-- Monster 3D model-->
+        <a-entity
+          id="monster"
+          position="-0.5 0 0"
+          rotation="0 270 90"
+          scale="0.5 0.5 0.5"
+          visible="false"
+          obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/monster.obj);
+                  mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/monster.mtl)"
+          animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=0 270 90; to: 0 270 450; startEvents:jump"
+        >
+        </a-entity>
+        <!-- Dog 3D model-->
+        <a-entity
+          id="dog"
+          position="0 0 0"
+          rotation="0 270 90"
+          visible="false"
+          obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/dog.obj);
+                mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/dog.mtl)"
+          animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=0 270 90; to: 0 270 450; startEvents:jump"
+        >
+        </a-entity>
+        <!-- Heart 3D model for the dog-->
+        <a-entity
+          id="heart2"
+          position="0 0 -1.25"
+          rotation="90 270 90"
+          visible="false"
+          scale="0.25 0.25 0.25"
+          obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.obj);
+                  mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.mtl)"
+          animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=90 270 90; to: 450 270 90; startEvents: emit"
+          animation__pipo="property: visible; dur: 1; easing:  linear; to: false; startEvents: pipo "
+          animation__popo="property: visible; dur: 1; easing:  linear; to: true; startEvents: popo "
+        >
+        </a-entity>
+        <!-- Heart 3D model for the monster-->
+        <a-entity
+          id="heart3"
+          position="0 0 -1.25"
+          rotation="90 270 90"
+          visible="false"
+          scale="0.25 0.25 0.25"
+          obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.obj);
+                  mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.mtl)"
+          animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=90 270 90; to: 450 270 90; startEvents: emit"
+          animation__pipo="property: visible; dur: 1; easing:  linear; to: false; startEvents: pipo "
+          animation__popo="property: visible; dur: 1; easing:  linear; to: true; startEvents: popo "
+        >
+        </a-entity>
+      </a-marker>
+
+      <a-marker preset="kanji">
+        <a-sphere
+          id="catChoose"
+          color="yellow"
+          radius="0.5"
+          position="-1 0 0"
+        ></a-sphere>
+        <a-sphere
+          id="dogChoose"
+          color="green"
+          radius="0.5"
+          position="0 0 0"
+        ></a-sphere>
+        <a-sphere
+          id="monsterChoose"
+          color="red"
+          radius="0.5"
+          position="1 0 0"
+        ></a-sphere>
+      </a-marker>
+
+    <!--Own image marker-->
+    <a-marker type="pattern" preset="custom" url="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/markerD20/pattern-d20.patt">
+        <a-box position="0 0 0" rotation="0 45 45" width="0.5" color="red">
+        </a-box>
+    </a-marker>
+
+    </a-scene>
+  </body>
+</html>
+
+
+//javascript
+<script>
+  //warns of the need
+  var speechBubble = document.querySelector(".speech-bubble");
+  //show the timer
+  var speechBubbleTeste = document.querySelector(".speech-bubble-test");
+  function startTimer(duration, display) {
+    speechBubble.style.display = "none";
+    speechBubbleTeste .style.display = "flex";
+    var timer = duration,
+      minutes,
+      seconds;
+    var clean = setInterval(function() {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+
+      if (--timer < 0) {
+        timer = duration;
+      }
+      if (timer == 0) {
+        speechBubble.style.display = "flex";
+        speechBubble.innerHTML = "THE ANIMAL NEEDS FOOD";
+        clearInterval(clean);
+      }
+    }, 1000);
+  }
+  /* The Document method querySelector() returns the first Element within the
+  document that matches the specified selector, 
+ or group of selectors. 
+ If no matches are found, null is returned.*/
+
+  //3D models
+  var cat = document.querySelector("#cat");
+  var dog = document.querySelector("#dog");
+  var monster = document.querySelector("#monster");
+  var heart = document.querySelector("#heart");
+  var heart2 = document.querySelector("#heart2");
+  var heart3 = document.querySelector("#heart3");
+
+  //Bottons to choose the animal
+  var catChoose = document.querySelector("#catChoose");
+  var dogChoose = document.querySelector("#dogChoose");
+  var monsterChoose = document.querySelector("#monsterChoose");
+
+  catChoose.addEventListener("click", function() {
+    cat.object3D.visible = true;
+    dog.object3D.visible = false;
+    monster.object3D.visible = false;
+
+    cat.setAttribute("position", { x: 0, y: 0, z: 0 });
+    dog.setAttribute("position", { x: 5, y: 5, z: 5 });
+    monster.setAttribute("position", { x: 5, y: 5, z: 5 });
+  });
+  dogChoose.addEventListener("click", function() {
+    cat.object3D.visible = false;
+    dog.object3D.visible = true;
+    monster.object3D.visible = false;
+    dog.setAttribute("position", { x: 0, y: 0, z: 0 });
+    monster.setAttribute("position", { x: 5, y: 5, z: 5 });
+    cat.setAttribute("position", { x: 5, y: 5, z: 5 });
+  });
+  monsterChoose.addEventListener("click", function() {
+    cat.object3D.visible = false;
+    dog.object3D.visible = false;
+    monster.object3D.visible = true;
+    dog.setAttribute("position", { x: 5, y: 5, z: 5 });
+    monster.setAttribute("position", { x: -0.5, y: 0, z: 0 });
+    cat.setAttribute("position", { x: 5, y: 5, z: 5 });
+  });
+
+   // Interaction with the cat
+  cat.addEventListener("click", function() {
+    heart.emit("emit");
+    cat.emit("jump");
+  });
+  cat.addEventListener("mouseenter", function() {
+    heart.emit("popo");
+  });
+  cat.addEventListener("mouseleave", function() {
+    heart.emit("pipo");
+  });
+  
+  
+ //Interaction with the dog
+  dog.addEventListener("click", function() {
+    heart2.emit("emit");
+
+    dog.emit("jump");
+  });
+  dog.addEventListener("mouseenter", function() {
+    heart2.emit("popo");
+  });
+  dog.addEventListener("mouseleave", function() {
+    heart2.emit("pipo");
+  });
+
+  
+  //Interaction with the monster
+  monster.addEventListener("click", function() {
+    monster.emit("jump");
+    heart3.emit("emit");
+  });
+  monster.addEventListener("mouseenter", function() {
+    heart3.emit("popo");
+  });
+  monster.addEventListener("mouseleave", function() {
+    heart3.emit("pipo");
+  });
+
+  window.onload = function() {
+    var boxEl = document.querySelector("a-box");
+
+    var fiveMinutes = 60 * 1,
+      display = document.querySelector("#time");
+    boxEl.addEventListener("click", function() {
+      startTimer(fiveMinutes, display);
+    });
+  };
+</script>
