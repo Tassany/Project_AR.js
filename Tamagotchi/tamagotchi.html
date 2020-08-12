@@ -11,7 +11,6 @@
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
   </head>
 
-  //CSS
   <style>
     .speech-bubble {
       content: "miau miau";
@@ -21,10 +20,10 @@
       bottom: 50px;
       right: 10px;
       left: 10px;
-      min-height: 20%;
+      min-height: 5%;
       background: #262626;
       color: #ffffff;
-      font-size: 28px;
+      font-size: 25px;
       border-radius: 0.4em;
       padding: 20px;
       display: none;
@@ -37,10 +36,10 @@
       bottom: 50px;
       right: 10px;
       left: 10px;
-      min-height: 20%;
+      min-height: 5%;
       background: #262626;
       color: #ffffff;
-      font-size: 28px;
+      font-size: 25px;
       border-radius: 0.4em;
       padding: 20px;
       display: flex;
@@ -48,14 +47,15 @@
   </style>
   <body>
     <div class="speech-bubble-test">
-        The animal will need food in  <span id="time">01:00</span>  seconds!
-       </div>
-         <div class="speech-bubble">
-    THE ANIMAL NEEDS FOOD
-       </div>
+      The animal will need food in <span id="time">01:00</span> seconds!
+    </div>
+    <div class="speech-bubble">
+      THE ANIMAL NEEDS FOOD
+    </div>
     <a-scene embedded arjs>
       <!-- Camera and cursor-->
       <a-entity camera>
+        <!-- Cursor animation for the interaction -->
         <a-cursor
           animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
           animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
@@ -152,44 +152,54 @@
       <a-marker preset="kanji">
         <a-sphere
           id="catChoose"
-          color="yellow"
+          color="#ff6600"
           radius="0.5"
           position="-1 0 0"
         ></a-sphere>
         <a-sphere
           id="dogChoose"
-          color="green"
+          color="#ffff00"
           radius="0.5"
           position="0 0 0"
         ></a-sphere>
         <a-sphere
           id="monsterChoose"
-          color="red"
+          color="#00cc00"
           radius="0.5"
           position="1 0 0"
         ></a-sphere>
       </a-marker>
 
-    <!--Own image marker-->
-    <a-marker type="pattern" preset="custom" url="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/markerD20/pattern-d20.patt">
-        <a-box position="0 0 0" rotation="0 45 45" width="0.5" color="red">
-        </a-box>
-    </a-marker>
-
+      <!--Own image marker-->
+      <a-marker
+        type="pattern"
+        preset="custom"
+        url="https://raw.githubusercontent.com/Tassany/Project_AR.js/master/markerD20/pattern-d20.patt"
+      >
+        <a-entity
+          id="food"
+          position="0 0 0"
+          rotation="0 180 90"
+          visible="true"
+          scale="1 1 1"
+          obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/food.obj);
+                  mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/food.mtl)"
+        ></a-entity>
+      </a-marker>
     </a-scene>
   </body>
 </html>
 
-
-//javascript
 <script>
   //warns of the need
   var speechBubble = document.querySelector(".speech-bubble");
   //show the timer
   var speechBubbleTeste = document.querySelector(".speech-bubble-test");
+
+  //function for the timer
   function startTimer(duration, display) {
     speechBubble.style.display = "none";
-    speechBubbleTeste .style.display = "flex";
+    speechBubbleTeste.style.display = "flex";
     var timer = duration,
       minutes,
       seconds;
@@ -206,6 +216,7 @@
         timer = duration;
       }
       if (timer == 0) {
+        speechBubbleTeste.style.display = "none";
         speechBubble.style.display = "flex";
         speechBubble.innerHTML = "THE ANIMAL NEEDS FOOD";
         clearInterval(clean);
@@ -256,7 +267,7 @@
     cat.setAttribute("position", { x: 5, y: 5, z: 5 });
   });
 
-   // Interaction with the cat
+  // Interaction with the cat
   cat.addEventListener("click", function() {
     heart.emit("emit");
     cat.emit("jump");
@@ -267,9 +278,8 @@
   cat.addEventListener("mouseleave", function() {
     heart.emit("pipo");
   });
-  
-  
- //Interaction with the dog
+
+  //Interaction with the dog
   dog.addEventListener("click", function() {
     heart2.emit("emit");
 
@@ -282,7 +292,6 @@
     heart2.emit("pipo");
   });
 
-  
   //Interaction with the monster
   monster.addEventListener("click", function() {
     monster.emit("jump");
@@ -296,11 +305,11 @@
   });
 
   window.onload = function() {
-    var boxEl = document.querySelector("a-box");
+    var food = document.querySelector("#food");
 
     var fiveMinutes = 60 * 1,
       display = document.querySelector("#time");
-    boxEl.addEventListener("click", function() {
+    food.addEventListener("click", function() {
       startTimer(fiveMinutes, display);
     });
   };
