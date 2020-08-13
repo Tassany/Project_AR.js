@@ -92,8 +92,8 @@
           obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.obj);
                   mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.mtl)"
           animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=90 270 90; to: 450 270 90; startEvents: emit"
-          animation__pipo="property: visible; dur: 1; easing:  linear; to: false; startEvents: pipo "
-          animation__popo="property: visible; dur: 1; easing:  linear; to: true; startEvents: popo "
+          animation__appear="property: visible; dur: 1; easing:  linear; to: false; startEvents: appear "
+          animation__disappear="property: visible; dur: 1; easing:  linear; to: true; startEvents: disappear "
         >
         </a-entity>
         <!-- Monster 3D model-->
@@ -129,8 +129,8 @@
           obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.obj);
                   mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.mtl)"
           animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=90 270 90; to: 450 270 90; startEvents: emit"
-          animation__pipo="property: visible; dur: 1; easing:  linear; to: false; startEvents: pipo "
-          animation__popo="property: visible; dur: 1; easing:  linear; to: true; startEvents: popo "
+          animation__appear="property: visible; dur: 1; easing:  linear; to: false; startEvents: appear "
+          animation__disappear="property: visible; dur: 1; easing:  linear; to: true; startEvents: disappear "
         >
         </a-entity>
         <!-- Heart 3D model for the monster-->
@@ -143,8 +143,8 @@
           obj-model="obj: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.obj);
                   mtl: url(https://raw.githubusercontent.com/Tassany/Project_AR.js/master/3D_Models/modelos_tamagotchi/heart.mtl)"
           animation__rotation="property: rotation; dur: 1000; easing: linear; from:  rotation=90 270 90; to: 450 270 90; startEvents: emit"
-          animation__pipo="property: visible; dur: 1; easing:  linear; to: false; startEvents: pipo "
-          animation__popo="property: visible; dur: 1; easing:  linear; to: true; startEvents: popo "
+          animation__appear="property: visible; dur: 1; easing:  linear; to: false; startEvents: appear "
+          animation__disappear="property: visible; dur: 1; easing:  linear; to: true; startEvents: disappear "
         >
         </a-entity>
       </a-marker>
@@ -273,10 +273,10 @@
     cat.emit("jump");
   });
   cat.addEventListener("mouseenter", function() {
-    heart.emit("popo");
+    heart.emit("appear");
   });
   cat.addEventListener("mouseleave", function() {
-    heart.emit("pipo");
+    heart.emit(" disappear");
   });
 
   //Interaction with the dog
@@ -286,10 +286,10 @@
     dog.emit("jump");
   });
   dog.addEventListener("mouseenter", function() {
-    heart2.emit("popo");
+    heart2.emit("appear");
   });
   dog.addEventListener("mouseleave", function() {
-    heart2.emit("pipo");
+    heart2.emit( "disappear");
   });
 
   //Interaction with the monster
@@ -298,10 +298,10 @@
     heart3.emit("emit");
   });
   monster.addEventListener("mouseenter", function() {
-    heart3.emit("popo");
+    heart3.emit("appear");
   });
   monster.addEventListener("mouseleave", function() {
-    heart3.emit("pipo");
+    heart3.emit(" disappear");
   });
 
   window.onload = function() {
